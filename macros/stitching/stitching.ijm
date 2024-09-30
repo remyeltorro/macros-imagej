@@ -16,7 +16,7 @@ for (i=0;i<files.length;i++){
 	print(file);
 	
 	if (file.endsWith(".tif") | file.endsWith(".tiff")) {
-			run("Bio-Formats Windowless Importer", "open="+folder+file);
+			run("Bio-Formats Importer", "open=["+ folder +file+"] autoscale color_mode=Default rois_import=[ROI manager] view=[Hyperstack] stack_order=Default");
 			//File.openSequence(folder+file);
 			og_name = File.getName(folder+file);
 			
@@ -28,6 +28,7 @@ for (i=0;i<files.length;i++){
 			print("N slices = ",n_slices);
 			n_channels = channels;
 			print("N channels = ",n_channels);
+			waitForUser;
 			
 			if (n_channels>1) {
 				run("Arrange Channels...", "new=1");
